@@ -7,5 +7,5 @@ variable "region" {
 }
 
 variable credentials_file {
-    default = "./google.key"
+    default = "google.key"
 }
