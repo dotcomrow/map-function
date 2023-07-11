@@ -36,6 +36,7 @@ resource "google_cloudfunctions_function" "function" {
     entry_point           = "main_gcs"
     trigger_http          = true
     https_trigger_security_level = "SECURE_ALWAYS"
+    
     # looks to be used for triggering on a bucket event
     # event_trigger {
     #     event_type = "google.storage.object.finalize"
