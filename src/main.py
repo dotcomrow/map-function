@@ -10,7 +10,7 @@ from geojson import Polygon, FeatureCollection, LineString
 
 logger = logging.getLogger(__name__)
 
-def lambda_handler(event, context):
+def main_gcs(event, context):
 
     try:
         # print('Raw Form Data: ' + unquote(base64.b64decode(event['body'])))
