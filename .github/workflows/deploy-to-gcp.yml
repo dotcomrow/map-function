@@ -51,6 +51,13 @@ jobs:
           replace: ${{ vars.GCP_REGION }}
           regex: false
 
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+          find: "<FUNCTION_NAME>"
+          replace: ${{ vars.GCP_FUNCTION_NAME }}
+          regex: false
+
     - name: Writing Google key
       uses: mobiledevops/secret-to-file-action@v1
       with:

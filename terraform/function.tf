@@ -25,7 +25,7 @@ resource "google_storage_bucket_object" "zip" {
 
 # Create the Cloud function triggered by a `Finalize` event on the bucket
 resource "google_cloudfunctions_function" "function" {
-    name                  = "<PROJECT_NAME>"
+    name                  = "<FUNCTION_NAME>"
     runtime               = "python37"  # of course changeable
 
     # Get the source code of the cloud function as a Zip compression
