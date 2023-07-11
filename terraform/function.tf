@@ -34,7 +34,7 @@ resource "google_cloudfunctions_function" "function" {
 
     # Must match the function name in the cloud function `main.py` source code
     entry_point           = "main_gcs"
-    
+    trigger_http          = true
     # 
     event_trigger {
         event_type = "google.storage.object.finalize"
