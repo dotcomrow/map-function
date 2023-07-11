@@ -64,8 +64,8 @@ jobs:
           is-executable: false
 
     - name: List files
-      run: ls -la
-      
+      run: ls -la ../
+
     - name: Setup terraform variables
       id: vars
       run: |-
