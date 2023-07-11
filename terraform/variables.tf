@@ -5,3 +5,7 @@ variable "project_id" {
 variable "region" {
     default = "<REGION>"
 }
+
+variable credentials_file {
+    default = "../google.key"
+}
