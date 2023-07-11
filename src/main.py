@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def main_gcs(event):
 
     headers = {
-            "Access-Control-Allow-Origin": "mapstuff.suncoast.systems",
+            "Access-Control-Allow-Origin": "https://mapstuff.suncoast.systems",
             "Access-Control-Allow-Methods": "GET",
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Max-Age": "3600",
@@ -24,7 +24,7 @@ def main_gcs(event):
         return ("", 204, headers)
 
     # Set CORS headers for the main request
-    headers = {"Access-Control-Allow-Origin": "mapstuff.suncoast.systems"}
+    headers = {"Access-Control-Allow-Origin": "https://mapstuff.suncoast.systems"}
 
     try:
         # print('Raw Form Data: ' + unquote(base64.b64decode(event['body'])))
