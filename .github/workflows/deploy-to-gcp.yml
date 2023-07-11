@@ -13,6 +13,7 @@ jobs:
     name: 'Pull Dependencies'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: pullDependencies
         run: |-
           pip3 install -r ./src/requirements.txt --target ./src
