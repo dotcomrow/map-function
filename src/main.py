@@ -23,7 +23,6 @@ def main_gcs(event, context):
         # dynamodb = boto3.resource('dynamodb')
         # msg_table = dynamodb.Table('MESSAGES')
 
-        try:
             print('Query params: ' + str(event['queryStringParameters']))
             # response = msg_table.get_item(
             #     Key={'MESSAGE_ID': 'GREETING'})
@@ -124,19 +123,6 @@ def main_gcs(event, context):
             
             return geojson.dumps(FeatureCollection(features))
 
-        except ClientError as e:
-                print(e.response['Error']['Message'])
-                print(e.response['No item found'])
-
-        return {
-            'statusCode': 200,
-            'body': {
-                "status": "OK",
-            },
-            'headers': {
-                "Content-Type": "application/json"
-            }
-        }
     except Exception as exception:
         print(exception)
         return {
