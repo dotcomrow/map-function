@@ -10,7 +10,7 @@ from geojson import Polygon, FeatureCollection, LineString
 
 logger = logging.getLogger(__name__)
 
-def main_gcs(event, context):
+def main_gcs(event):
 
     headers = {
             "Access-Control-Allow-Origin": "mapstuff.suncoast.systems",
