@@ -24,7 +24,7 @@ def main_gcs(event):
         return ("", 204, headers)
 
     # Set CORS headers for the main request
-    headers = {"Access-Control-Allow-Origin": "*"}
+    headers = {"Access-Control-Allow-Origin": "mapstuff.suncoast.systems"}
 
     try:
         # print('Raw Form Data: ' + unquote(base64.b64decode(event['body'])))
@@ -37,7 +37,7 @@ def main_gcs(event):
         # dynamodb = boto3.resource('dynamodb')
         # msg_table = dynamodb.Table('MESSAGES')
 
-            print('Query params: ' + str(event['queryStringParameters']))
+            # print('Query params: ' + str(event['queryStringParameters']))
             # response = msg_table.get_item(
             #     Key={'MESSAGE_ID': 'GREETING'})
 
@@ -46,7 +46,7 @@ def main_gcs(event):
             
             
             
-            params = event['queryStringParameters']
+            params = event.args
             features = []
             bbox = params['bbox']
             bboxArray = bbox.split(',')
