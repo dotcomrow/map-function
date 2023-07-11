@@ -63,10 +63,9 @@ jobs:
           filename: "./terraform/google.key"
           is-executable: false
 
-    - name: List files
+    - name: Copy Src
       run: |
-        ls -la ../
-        ls -la
+        mv ../src ./terraform
 
     - name: Setup terraform variables
       id: vars
