@@ -66,6 +66,7 @@ jobs:
     - name: Copy Src
       run: |
         mv ../src ./terraform
+        ls -al ./terraform
 
     - name: Setup terraform variables
       id: vars
