@@ -12,6 +12,20 @@ logger = logging.getLogger(__name__)
 
 def main_gcs(event, context):
 
+    headers = {
+            "Access-Control-Allow-Origin": "mapstuff.suncoast.systems",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Max-Age": "3600",
+    }
+    if event.method == "OPTIONS":
+        # Allows GET requests from any origin with the Content-Type
+        # header and caches preflight response for an 3600s
+        return ("", 204, headers)
+
+    # Set CORS headers for the main request
+    headers = {"Access-Control-Allow-Origin": "*"}
+
     try:
         # print('Raw Form Data: ' + unquote(base64.b64decode(event['body'])))
         # form = unquote(base64.b64decode(event['body']))
@@ -121,7 +135,7 @@ def main_gcs(event, context):
                     
                 i+=1
             
-            return geojson.dumps(FeatureCollection(features))
+            return (geojson.dumps(FeatureCollection(features)), 200, headers)
 
     except Exception as exception:
         print(exception)
