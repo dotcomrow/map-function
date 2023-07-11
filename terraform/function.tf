@@ -35,11 +35,11 @@ resource "google_cloudfunctions_function" "function" {
     # Must match the function name in the cloud function `main.py` source code
     entry_point           = "main_gcs"
     trigger_http          = true
-    # 
-    event_trigger {
-        event_type = "google.storage.object.finalize"
-        resource   = "${var.project_id}-input"
-    }
+    # looks to be used for triggering on a bucket event
+    # event_trigger {
+    #     event_type = "google.storage.object.finalize"
+    #     resource   = "${var.project_id}-input"
+    # }
 
     # Dependencies are automatically inferred so these lines can be deleted
     depends_on            = [
