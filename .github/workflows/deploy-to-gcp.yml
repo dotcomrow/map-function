@@ -9,45 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  pullDependencies:
-    name: 'Pull Dependencies'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: pullDependencies
-        run: |-
-          pip3 install -r ./src/requirements.txt --target ./src
-
-  replaceValues:
-    name: 'Replace Values'
-    needs: pullDependencies
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "<PROJECT_NAME>"
-          replace: ${{ vars.GCP_PROJECT }}
-          regex: false
-
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "<YOUR-PROJECT-ID>"
-          replace: ${{ vars.GCP_PROJECT_ID }}
-          regex: false
-
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "<REGION>"
-          replace: ${{ vars.GCP_REGION }}
-          regex: false
-
   terraform:
     name: 'Terraform'
-    needs: replaceValues
     runs-on: ubuntu-latest
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -61,11 +24,36 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: 'Pull Dependencies'
+      run: |-
+            pip3 install -r ../src/requirements.txt --target ../src
+
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+          find: "<PROJECT_NAME>"
+          replace: ${{ vars.GCP_PROJECT }}
+          regex: false
+
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+          find: "<YOUR-PROJECT-ID>"
+          replace: ${{ vars.GCP_PROJECT_ID }}
+          regex: false
+
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+          find: "<REGION>"
+          replace: ${{ vars.GCP_REGION }}
+          regex: false
 
     - name: Setup terraform variables
       id: vars
