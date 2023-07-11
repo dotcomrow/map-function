@@ -9,10 +9,18 @@ permissions:
   contents: read
 
 jobs:
+  pullDependencies:
+    name: 'Pull Dependencies'
+    runs-on: ubuntu-latest
+    steps:
+      - name: pullDependencies
+        run: |-
+          pip3 install -r ./src/requirements.txt --target ./src
+
   terraform:
     name: 'Terraform'
+    needs: pullDependencies
     runs-on: ubuntu-latest
-    environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
