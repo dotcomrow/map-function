@@ -63,6 +63,9 @@ jobs:
           filename: "../google.key"
           is-executable: false
 
+    - name: List files
+      run: ls -la
+      
     - name: Setup terraform variables
       id: vars
       run: |-
