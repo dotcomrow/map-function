@@ -1,9 +1,9 @@
 # Generates an archive of the source code compressed as a .zip file.
 data "archive_file" "source" {
     type        = "zip"
-    source_dir  = "../"
+    source_dir  = "./"
     output_path = "./tmp/function.zip"
-    excludes = [".git/*", ".terraform/*", "terraform/*", "tmp/*", "README.md", "LICENSE", "google.key"]
+    excludes = ["bin", "config", "terraform.tfvars", "output-buffer", ".terraformrc"]
 }
 
 # Add source code zip to the Cloud Function's bucket
